@@ -1,6 +1,6 @@
 "use client";
 
-import { NetworkChartClient } from "@/app/(main)/ClientComponents/NetworkChart";
+//import { NetworkChartClient } from "@/app/(main)/ClientComponents/NetworkChart";
 import ServerDetailChartClient from "@/app/(main)/ClientComponents/ServerDetailChartClient";
 import ServerDetailClient from "@/app/(main)/ClientComponents/ServerDetailClient";
 import TabSwitch from "@/components/TabSwitch";
@@ -9,7 +9,7 @@ import { use, useState } from "react";
 
 export default function Page(props: { params: Promise<{ id: string }> }) {
   const params = use(props.params);
-  const tabs = ["Detail", "Network"];
+  const tabs = ["Detail"];
   const [currentTab, setCurrentTab] = useState(tabs[0]);
   return (
     <div className="mx-auto grid w-full max-w-5xl gap-2">
@@ -29,12 +29,6 @@ export default function Page(props: { params: Promise<{ id: string }> }) {
         <ServerDetailChartClient
           server_id={Number(params.id)}
           show={currentTab === tabs[0]}
-        />
-      </div>
-      <div style={{ display: currentTab === tabs[1] ? "block" : "none" }}>
-        <NetworkChartClient
-          server_id={Number(params.id)}
-          show={currentTab === tabs[1]}
         />
       </div>
     </div>
